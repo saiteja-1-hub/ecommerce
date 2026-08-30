@@ -39,7 +39,7 @@ const Login = () => {
         login(result.token);
 
         // Go to products after successful login
-        navigate("/products");
+        navigate("/home");
 
       } else {
         setMessage(result.message || "Invalid email or password");

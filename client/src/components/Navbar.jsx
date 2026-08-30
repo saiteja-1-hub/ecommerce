@@ -7,7 +7,7 @@ const Navbar = () => {
 
   const handleLogout = () => {
     logout();
-    navigate("/login");
+    navigate("/");
   };
 
   return (
@@ -16,7 +16,7 @@ const Navbar = () => {
 
       {isLoggedIn && (
         <>
-        <Link to="/">Home</Link>
+        <Link to="/home">Home</Link>
         <Link to="/products">
           Products
         </Link>
@@ -25,7 +25,7 @@ const Navbar = () => {
 
       {!isLoggedIn && (
         <>
-          <Link to="/login">Login</Link>
+          <Link to="/">Login</Link>
           <Link to="/register">Register</Link>
         </>
       )}
