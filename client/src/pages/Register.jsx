@@ -33,7 +33,7 @@ const Register = () => {
         setMessage("Registration successful! Redirecting to login...");
 
         setTimeout(() => {
-          navigate("/login");
+          navigate("/");
         }, 1500);
       } else {
         setMessage(result.message || "Registration failed");
