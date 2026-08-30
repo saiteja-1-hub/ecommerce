@@ -151,7 +151,7 @@ const Register = () => {
 
           <button
             type="button"
-            onClick={() => navigate("/login")}
+            onClick={() => navigate("/")}
             style={{
               border: "none",
               background: "none",
