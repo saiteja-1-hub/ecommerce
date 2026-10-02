@@ -226,31 +226,36 @@ products.forEach((product) => {
       product.description,
       product.price,
       product.category,
-      product.image,
+      product.image
     ],
-    function (err) {
+    (err) => {
       if (err) {
+        failed++;
+
         console.error(
-          `Failed to insert product ${product.id}:`,
+          `Error inserting ${product.name}:`,
           err.message
         );
-        failed++;
       } else {
-        console.log(`Product ${product.id} processed successfully`);
         completed++;
+
+        console.log(
+          `Added: ID ${product.id} - ${product.name}`
+        );
       }
 
       if (completed + failed === products.length) {
-        console.log(
-          `Product seeding completed. Success: ${completed}, Failed: ${failed}`
-        );
+        console.log("");
+        console.log("==============================");
+        console.log("SEEDING COMPLETED");
+        console.log("==============================");
+        console.log(`Total products: ${products.length}`);
+        console.log(`Successfully added: ${completed}`);
+        console.log(`Failed: ${failed}`);
 
-        // IMPORTANT:
-        // Do NOT call db.close() here.
-        // The server still needs this database connection.
+       
       }
     }
   );
 });
- 
- 
+
