@@ -40,8 +40,7 @@ export const getProducts = async () => {
 export const getProductById = async (id) => {
   const token = localStorage.getItem("token");
 
-  const response = await fetch(
-    `http://localhost:5000/api/products/${id}`,
+  const response = await fetch( `${API_URL}/products/${id}`,
     {
       method: "GET",
       headers: {
