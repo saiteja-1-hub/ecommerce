@@ -209,7 +209,7 @@ const products = [
 // ======================================
 
 const query = `
-  INSERT INTO products
+  INSERT OR IGNORE INTO products
   (id, name, description, price, category, image)
   VALUES (?, ?, ?, ?, ?, ?)
 `;
@@ -226,36 +226,31 @@ products.forEach((product) => {
       product.description,
       product.price,
       product.category,
-      product.image
+      product.image,
     ],
-    (err) => {
+    function (err) {
       if (err) {
-        failed++;
-
         console.error(
-          `Error inserting ${product.name}:`,
+          `Failed to insert product ${product.id}:`,
           err.message
         );
+        failed++;
       } else {
+        console.log(`Product ${product.id} processed successfully`);
         completed++;
-
-        console.log(
-          `Added: ID ${product.id} - ${product.name}`
-        );
       }
 
       if (completed + failed === products.length) {
-        console.log("");
-        console.log("==============================");
-        console.log("SEEDING COMPLETED");
-        console.log("==============================");
-        console.log(`Total products: ${products.length}`);
-        console.log(`Successfully added: ${completed}`);
-        console.log(`Failed: ${failed}`);
+        console.log(
+          `Product seeding completed. Success: ${completed}, Failed: ${failed}`
+        );
 
-        db.close();
+        // IMPORTANT:
+        // Do NOT call db.close() here.
+        // The server still needs this database connection.
       }
     }
   );
 });
-
+ 
+ 
